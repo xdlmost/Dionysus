@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script language="JavaScript">
+
+    function getmdCallback(txt)
+    {
+        document.getElementById("getext").innerHTML =txt;
+    }
+    function getuserCallback(txt)
+    {
+        document.getElementById("uesr").innerHTML = txt;
+    }
+    function XMLRq(url,param,callback)
+        {
+            var xmlHttpreq = null;
+            if (window.ActiveXObject)
+            {
+                xmlHttpreq = new ActiveXObject("Microsoft.XMLHTTP");
+                //alert("xmlrequest对象创建成功")
+            }
+            else if (window.XMLHttpRequest) //除了IE5与IE6以外的浏览器
+            {
+                xmlHttpreq = new XMLHttpRequest();
+                //alert("c");
+            }
+            if (xmlHttpreq != null) {
+                xmlHttpreq.open("POST", url, true);
+                xmlHttpreq.onreadystatechange = setCallback;
+                xmlHttpreq.send(param);
+
+            }
+            function setCallback()
+            {
+                if (xmlHttpreq.readyState == 4)
+                {
+                    if (xmlHttpreq.status == 200)
+                    {
+                        callback(xmlHttpreq.responseText)
+                    }
+                }
+            }
+        }
+</script>
+</head>
+<body>
+
+<div>
+    <h1>文件上传示例</h1>
+    <form action="/api/upload-image" enctype='multipart/form-data' method='POST'>
+        <input type="file" name="file">
+        <input type="submit" value="上传">
+    </form>
+</div>
+<div>
+    <h1>文件文本</h1>
+    <form action="/api/upload-md" enctype='multipart/form-data' method='POST'>
+        <input type="textarea" name="name">
+        <input type="textarea" name="md">
+        <input type="submit" value="上传">
+    </form>
+</div>
+
+<div >
+    <button  value="display" onclick="XMLRq('/api/get-md','storage/files/1a241fae-1db5-4d33-838a-84cc4074cd28',getmdCallback)" name="display">display md</button>
+    <div >
+        <p id="getext"></p>
+    </div>
+</div>
+<div>
+    <button  value="display" onclick="XMLRq('/api/display','',getuserCallback)" name="display">display user</button>
+    <div >
+        <p id="uesr"></p>
+    </div>
+</div>
+</body>
+</html>
