@@ -7,6 +7,9 @@ import json
 @app.route('/',methods=['POST', 'GET'])
 def test_index():
     return app.send_static_file('index.html')
+@app.route('/api/test',methods=['POST', 'GET'])
+def test_index():
+    return app.send_static_file('test.html')
 @app.route('/api/display',methods=['POST', 'GET'])
 def display():
     user = None
