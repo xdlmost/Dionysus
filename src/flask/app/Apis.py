@@ -5,7 +5,7 @@ import uuid
 import json
 
 @app.route('/',methods=['POST', 'GET'])
-def test_index():
+def index():
     return app.send_static_file('index.html')
 @app.route('/api/test',methods=['POST', 'GET'])
 def test_index():
