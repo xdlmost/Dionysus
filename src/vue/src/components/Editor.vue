@@ -7,7 +7,8 @@
 <script>
 import marked from 'marked'
 import Hljs from 'highlight.js'
-//import 'highlight.js/styles/default.css'
+import 'highlight.js/styles/default.css'
+import '../assets/md.css'
 var rendererMD = new marked.Renderer()
 
 rendererMD.code = function (code, language) {
@@ -26,7 +27,7 @@ marked.setOptions({
 export default {
   data () {
     return {
-      input: '# Markdown Test'
+      input: '# Markdown Test \n\n`ddd`\n\n*ddd*\n\n__ddd__\n\n> dd\n\n|name|po|\n|:-:|:-:|\n|dd|dd|\n|ee|ee|\n\n```c\n#include <string>\nint main ()\n{\n    printf("hehe");\n}\n```\n'
     }
   },
   computed: {
@@ -68,6 +69,5 @@ export default {
  {
    overflow:scroll
  }
-@import "../assets/md.css"
 
 </style>
