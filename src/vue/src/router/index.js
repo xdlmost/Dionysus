@@ -1,21 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Editor from '@/components/Editor'
+import About from '@/pages/About'
+import Index from '@/pages/Index'
+import Detail from '@/pages/Detail'
+import Terminal from '@/pages/Terminal'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/helloWorld',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/',
+      name: 'Welcome',
+      component: Index
     },
     {
-      path: '/markdown',
-      name: 'Editor',
-      component: Editor
+      path: '/index',
+      name: 'Welcome',
+      component: Index
+    },
+    {
+      path: '/detail',
+      name: 'Detail',
+      component: Detail
+    },
+    {
+      path: '/terminal',
+      name: 'Terminal',
+      component: Terminal
+    },
+    {
+      path: '/about',
+      name: 'Aboutname',
+      component: About
     }
   ]
 })

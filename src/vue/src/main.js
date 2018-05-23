@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import './assets/ui/element'
+import './assets/ui/main.css'
 
 Vue.config.productionTip = false
 
@@ -12,4 +14,7 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+
 })
+
+
