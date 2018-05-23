@@ -1,7 +1,7 @@
 <template>
     <div id="editor">
         <MarkdownInputter :input='paintext'/>
-        <MarkdownDisplayer :input='paintext'/>
+        <MarkdownDisplayer v-on:mdc="mdc"/>
     </div>
 </template>
 <script>
@@ -16,7 +16,12 @@ export default {
     },
     components: {
         MarkdownDisplayer,MarkdownInputter
-    }
+    },
+    methods:{  
+                mdc : function(mgs){  
+                    paintext=mgs
+                }  
+            }  
 }
 </script>
 <style scoped>

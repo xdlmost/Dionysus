@@ -1,10 +1,21 @@
 <template>
-    <textarea v-model="input"></textarea>
+    <textarea v-model="input" @change="mdc"></textarea>
 </template>
 <script>
 export default {
   name:'MarkdownInputter',
-  props:['input']
+  data ()
+  {
+      return {
+          input:''
+      }
+  },
+  methods: {
+    mdc() {
+        Hub.$emit('mdc',input); //Hub触发事件
+    }
+}
+
 }
 </script>
 
