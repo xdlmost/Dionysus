@@ -1,5 +1,5 @@
 <template>
-    <textarea v-model="input" @change="mdc"></textarea>
+    <textarea v-model="input" @input="mdc" @show="mdc" ></textarea>
 </template>
 <script>
 export default {
@@ -7,15 +7,18 @@ export default {
   data ()
   {
       return {
-          input:''
+          input:'# Markdown Test \n\n`ddd`\n\n*ddd*\n\n__ddd__\n\n> dd\n\n|name|po|\n|:-:|:-:|\n|dd|dd|\n|ee|ee|\n\n```c\n#include <string>\nint main ()\n{\n    printf("hehe");\n}\n```\n'
       }
   },
   methods: {
     mdc() {
-        Hub.$emit('mdc',input); //Hub触发事件
+        this.$emit('mdc2',this.input)
+        }
+    },
+    mounted(){
+        console.log('mounted')
+        this.$emit('mdc2',this.input)
     }
-}
-
 }
 </script>
 

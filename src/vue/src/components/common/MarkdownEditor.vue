@@ -1,7 +1,7 @@
 <template>
     <div id="editor">
-        <MarkdownInputter :input='paintext'/>
-        <MarkdownDisplayer v-on:mdc="mdc"/>
+        <MarkdownInputter   @mdc2="mdc"/>
+        <MarkdownDisplayer v-bind:input="paintext"/>
     </div>
 </template>
 <script>
@@ -11,15 +11,15 @@ export default {
     name:'MarkdownEditor',
     data () {
         return {
-            paintext: '# Markdown Test \n\n`ddd`\n\n*ddd*\n\n__ddd__\n\n> dd\n\n|name|po|\n|:-:|:-:|\n|dd|dd|\n|ee|ee|\n\n```c\n#include <string>\nint main ()\n{\n    printf("hehe");\n}\n```\n'
+            paintext: ''
         }
     },
     components: {
         MarkdownDisplayer,MarkdownInputter
     },
     methods:{  
-                mdc : function(mgs){  
-                    paintext=mgs
+                mdc(mgs){  
+                    this.paintext=mgs
                 }  
             }  
 }

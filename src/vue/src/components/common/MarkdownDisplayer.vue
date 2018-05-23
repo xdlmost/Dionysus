@@ -23,11 +23,6 @@ marked.setOptions({
   smartypants: false
 })
 export default {
-  /*data () {
-    return {
-      input: '# Markdown Test \n\n`ddd`\n\n*ddd*\n\n__ddd__\n\n> dd\n\n|name|po|\n|:-:|:-:|\n|dd|dd|\n|ee|ee|\n\n```c\n#include <string>\nint main ()\n{\n    printf("hehe");\n}\n```\n'
-    }
-  },*/
   name:'MarkdownDisplayer',
   computed: {
     compiledMarkdown: function () {
