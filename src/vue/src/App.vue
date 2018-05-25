@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <div>
-      <img src="./assets/images/Dionysus.svg"/>
+      <!-- <img src="./assets/images/Dionysus.svg"/> -->
     </div>
     <router-view/>
   </div>

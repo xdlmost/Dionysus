@@ -1,4 +1,35 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #eeeeee;
+}
+h1, h2, h3, h4, h5, h6, p, ul, li, div {
+    margin: 0;
+    padding: 0;
+    color: #333333;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+/* 几种常见的clear-fix方式
+.clear-fix:after {
+    display: block;
+    content: '.';
+    clear: both;
+}
+.clear-fix {
+    overflow: auto;
+    height: 1%;
+} 
+*/
+
+.clear-fix {
+    overflow: hidden;
+    zoom: 1;
 }
