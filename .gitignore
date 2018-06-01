@@ -1,6 +1,8 @@
 /src/flask/venv
 /src/flask/.idea
 /src/flask/app/__pycache__
+/src/flask/app/storage/files
+/src/flask/app/models/__pycache__
 
 .DS_Store
 src/vue/node_modules/

@@ -1,0 +1,18 @@
+[
+  {
+    "id":0,
+    "name":"甄浩",
+    "createdtime":"2018-5-31",
+    "note":"这是一个土豪",
+    "token":"5969c94d1e8a1fe6183b55bea631d1f9",
+    "filesindex":"/0/index.json"
+  },
+  {
+    "id":1,
+    "name":"徐东雷",
+    "createdtime":"2018-5-31",
+    "note":"他有一个土豪朋友",
+    "token":"72821614fe6e22254bb802666fa81898",
+    "filesindex":"/1/index.json"
+  }
+]
