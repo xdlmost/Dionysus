@@ -29,7 +29,32 @@ export default class Caller{
     getArticleList(id){
         return this.ajax("GET",this.articleListURL(id),"")
     }
-    getArticle(token,aid){}
-    changeArticleTitle(token,aid){}
-    updateArticle(token,aid){}
+    articleURL(id,aid)
+    {
+        return this.baseurl()+"Article/"+id+(aid?"?aid="+aid:"")
+    }
+    getArticle(id,aid){
+        return this.ajax("GET",this.articleURL(id,aid),"")
+    }
+    
+    uploadArticle(id,token,aid,title,content){
+        var data={}
+        if(token){
+            data.token=token
+        }
+        if(title){
+            data.title=title
+        }
+        if(content!=undefined){
+            data.content=content
+        }
+        return this.ajax("POST",this.articleURL(id,aid),JSON.stringify(data))
+    }
+    dearticleURL(id,aid)
+    {
+        return this.baseurl()+"deArticle/"+id+(aid?"?aid="+aid:"")
+    }
+    deleteArticle(id,token,aid){
+        return this.ajax("POST",this.dearticleURL(id,aid),JSON.stringify({token:token}))
+    }
 };

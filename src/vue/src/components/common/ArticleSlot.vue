@@ -2,7 +2,7 @@
     <div>
         <el-row>
             <el-col :span="16">
-                <el-button v-show="!editable" type="text">
+                <el-button v-show="!editable" type="text" @click="select">
                     {{input.title}}
                 </el-button>
                 <el-input v-show="editable" v-model="title_tmp">
@@ -41,15 +41,13 @@ export default {
     methods:{
         ToDelete(env)
         {
-            this.$confirm('此操作将永久"'+this.title+'", 是否继续?', '提示', {
+            this.$confirm('此操作将永久"'+this.input.title+'", 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
+             console.log("deleteac IN A")
+             this.$emit('deleteac',this.input)
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -65,10 +63,16 @@ export default {
         EditOK(env)
         {
             this.editable=false
+            if(this.title_tmp!=this.input.title){
+                this.$emit('changeTitle',this.input,this.title_tmp)
+            }
         },
         EditCancel(env)
         {
             this.editable=false
+        },
+        select(){
+            this.$emit('select',this.input)
         }
     }
 }
