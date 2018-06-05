@@ -31,7 +31,7 @@ def index():
     return app.send_static_file('index.html')
 
 
-@app.route('/api/v1/user/<int:id>',methods=['POST', 'GET'])
+@app.route('/api/v1/user/<int:id>',methods=['POST', 'GET','DELETE'])
 def user(id):
     def interfun():
         token=request.args['token']
@@ -80,7 +80,7 @@ def article(id):
                                 if file.aid== aid:
                                     articlefile=os.path.join(basepath, 'storage/files/' + str(id) + '/'+aid)
                                     if os.path.exists(articlefile):
-                                        with open(articlefile, 'rb') as load_f_article:
+                                        with open(articlefile, 'r') as load_f_article:
                                             content=load_f_article.read()
                                             return jsonify({'state': 'ok', "article": {"header": file.__dict__,
                                                                                        "content": str(content)}})
@@ -121,7 +121,7 @@ def article(id):
                                                 files.append(f)
                                     with open(filesfile, 'w') as write_f:
                                         json.dump(files,write_f )
-                                        return  jsonify({'state': 'ok'})
+                                        return  jsonify({'state': 'ok','al':files})
                                 if content is not None:
                                     basepath = os.path.dirname(__file__)
                                     articlefile = os.path.join(basepath, 'storage/files/' + str(id) + '/' + aid)
@@ -147,6 +147,46 @@ def article(id):
                                             write_f.write(content)
                                     with open(filesfile, 'w') as write_f:
                                         json.dump(files_f,write_f)
-                                    return jsonify({'state': 'ok'})
+                                    return jsonify({'state': 'ok','al':files_f,'lc':content})
+
+        return jsonify({'state': 'error'})
+    return wrap(interfun())
+
+@app.route('/api/v1/deArticle/<int:id>', methods=['POST', 'GET'])
+def dearticle(id):
+    def interfun():
+        aid=None
+        if "aid" in request.args:
+            aid=request.args["aid"]
+        users = loadUser()
+        if request.method == "POST":
+            try:
+                postdata = json.loads(request.data)
+            except:
+                return jsonify({'state': 'error'})
+            token = None
+            if "token" in postdata:
+                token = postdata["token"]
+            if token is not None:
+                if users is not None:
+                    for u in users:
+                        if id == u.id and token == u.token:
+                            if aid is not None:
+                                basepath = os.path.dirname(__file__)
+                                filesfile = os.path.join(basepath, 'storage/files/' + str(id) + '/index.json')
+                                files = []
+                                with open(filesfile, 'rb') as load_f:
+                                    files_f = json.load(load_f)
+                                    for f in files_f:
+                                        if f['aid'] == aid:
+                                            pass
+                                        else:
+                                            files.append(f)
+                                with open(filesfile, 'w') as write_f:
+                                    json.dump(files, write_f)
+                                articlefile = os.path.join(basepath, 'storage/files/' + str(id) + '/' + aid)
+                                if os.path.exists(articlefile):
+                                    os.remove(articlefile)
+                                return jsonify({'state': 'ok', 'al': files})
         return jsonify({'state': 'error'})
     return wrap(interfun())
